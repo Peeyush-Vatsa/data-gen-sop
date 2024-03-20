@@ -21,6 +21,12 @@ public class TableParser {
             // Gets table name
             String[] queryParts = query.split(" ");
             String tableName = queryParts[2];
+            if (tableName.contains(".")){
+                tableName = tableName.split("\\.")[1];
+            }
+            if (tableName.startsWith("\"")){
+                tableName = tableName.substring(1, tableName.length() - 1);
+            }
             if (this.tables.containsKey(tableName)){
                 throw new Exception("Table already exists");
             }
@@ -36,6 +42,12 @@ public class TableParser {
                 String tableName = queryParts[2];
                 if (tableName.equalsIgnoreCase("only")){
                     tableName = queryParts[3];
+                }
+                if (tableName.contains(".")){
+                    tableName = tableName.split("\\.")[1];
+                }
+                if (tableName.startsWith("\"")){
+                    tableName = tableName.substring(1, tableName.length() - 1);
                 }
                 if (!this.tables.containsKey(tableName)){
                     throw new Exception("Table does not exist");

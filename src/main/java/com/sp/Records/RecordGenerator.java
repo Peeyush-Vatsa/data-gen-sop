@@ -1,2 +1,4 @@
-package com.sp.Records;public class RecordGenerator {
+package com.sp.Records;
+
+public class RecordGenerator {
 }

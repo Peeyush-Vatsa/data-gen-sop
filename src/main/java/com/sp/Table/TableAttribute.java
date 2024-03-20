@@ -51,7 +51,14 @@ public class TableAttribute{
         if (attributeParts[0].equalsIgnoreCase("Constraint")){
             return;
         }
+        if (attributeParts[0].contains("\\.")){
+            attributeParts[0] = attributeParts[0].split("\\.")[1];
+        }
+        if (attributeParts[0].startsWith("\"")){
+            attributeParts[0] = attributeParts[0].substring(1, attributeParts[0].length() - 1);
+        }
         this.name = attributeParts[0];
+        System.out.println(attributeParts[0]);
         String typeStr = attributeParts[1].toLowerCase();
         if (typeStr.equalsIgnoreCase("character")){
             if (!attribute1.contains("varying")) {
@@ -84,7 +91,13 @@ public class TableAttribute{
             this.isForeignKey = true;
             // Get the index of 'references'
             int foreignKey = attribute.indexOf("references") + 1;
-            String[] foreignKeyParts = attributeParts[foreignKey].split("(");
+            String[] foreignKeyParts = attributeParts[foreignKey].split("\\(");
+            if (foreignKeyParts[0].contains(".")){
+                foreignKeyParts[0] = foreignKeyParts[0].split("\\.")[1];
+            }
+            if (foreignKeyParts[0].startsWith("\"")){
+                foreignKeyParts[0] = foreignKeyParts[0].substring(1, foreignKeyParts[0].length() - 1);
+            }
             this.foreignKeyTable = foreignKeyParts[0];
             this.foreignKeyColumn = foreignKeyParts[1].substring(0, foreignKeyParts[1].length() - 1);
         }
