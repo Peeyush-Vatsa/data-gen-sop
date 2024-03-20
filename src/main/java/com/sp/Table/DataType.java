@@ -4,6 +4,7 @@ public enum DataType {
     SMALLINT,
     INTEGER,
     BIGINT,
+    CHARACTER,
     CHARACTER_VARYING,
     TEXT,
     TIMESTAMP_WITH_TIMEZONE,
@@ -12,5 +13,6 @@ public enum DataType {
     DOUBLE_PRECISION,
     BOOLEAN,
     UUID,
-    JSONB
+    JSONB,
+    UNKNOWN
 }

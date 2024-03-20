@@ -1,5 +1,10 @@
 package com.sp;
 
+import com.sp.Table.AttributeCheckConstraint;
+import com.sp.Table.DBTable;
+import com.sp.Table.TableAttribute;
+import com.sp.TableParser.TableParser;
+
 import java.io.*;
 import java.util.*;
 
@@ -23,6 +28,7 @@ public class Main {
             FileReader sourceSchemaReader = new FileReader(sourceSchema);
             BufferedReader sourceSchemaBufferedReader = new BufferedReader(sourceSchemaReader);
             String query = "";
+            TableParser tableParser = new TableParser();
             String line;
             while ((line = sourceSchemaBufferedReader.readLine()) != null) {
                 line = line.trim();
@@ -30,16 +36,23 @@ public class Main {
                     continue;
                 if (line.endsWith(";")) {
                     query += line;
-                    System.out.println(query);
+//                    System.out.println(query);
+                    tableParser.parseFromQuery(query);
                     query = "";
                 } else
                     query += line;
+                    query += " ";
             }
+            sourceSchemaBufferedReader.close();
+            sourceSchemaReader.close();
+            HashMap<String, DBTable> tables = tableParser.getTables();
         }
         catch (FileNotFoundException e) {
             System.out.println("Schema file not found");
             return;
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
