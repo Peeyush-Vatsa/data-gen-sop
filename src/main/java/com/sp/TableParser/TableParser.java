@@ -31,10 +31,19 @@ public class TableParser {
             return;
         }
         else if (query1.startsWith("alter table")){
-
-        }
-        else {
-            return;
+            if (query1.contains("constraint")) {
+                String[] queryParts = query.split(" ");
+                String tableName = queryParts[2];
+                if (tableName.equalsIgnoreCase("only")){
+                    tableName = queryParts[3];
+                }
+                if (!this.tables.containsKey(tableName)){
+                    throw new Exception("Table does not exist");
+                }
+                DBTable table = this.tables.get(tableName);
+                String constraint = query.substring(query1.indexOf("constraint"));
+                table.updateConstraint(constraint);
+            }
         }
     }
 }
