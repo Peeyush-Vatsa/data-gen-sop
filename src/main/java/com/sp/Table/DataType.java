@@ -1,0 +1,16 @@
+package com.sp.Table;
+
+public enum DataType {
+    SMALLINT,
+    INTEGER,
+    BIGINT,
+    CHARACTER_VARYING,
+    TEXT,
+    TIMESTAMP_WITH_TIMEZONE,
+    TIMESTAMP_WITHOUT_TIMEZONE,
+    DATE,
+    DOUBLE_PRECISION,
+    BOOLEAN,
+    UUID,
+    JSONB
+}
