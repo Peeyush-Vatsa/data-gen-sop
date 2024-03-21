@@ -36,7 +36,7 @@ CREATE TABLE public."Consultation" (
 );
 
 
-ALTER TABLE public."Consultation" OWNER TO postgres;
+-- ALTER TABLE public."Consultation" OWNER TO postgres;
 
 --
 -- Name: Consultation_consultationPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -64,7 +64,7 @@ CREATE TABLE public."Department" (
 );
 
 
-ALTER TABLE public."Department" OWNER TO postgres;
+-- ALTER TABLE public."Department" OWNER TO postgres;
 
 --
 -- Name: Department_departmentPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -94,7 +94,7 @@ CREATE TABLE public."Diagnosis" (
 );
 
 
-ALTER TABLE public."Diagnosis" OWNER TO postgres;
+-- ALTER TABLE public."Diagnosis" OWNER TO postgres;
 
 --
 -- Name: Diagnosis_diagonsisPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -121,7 +121,7 @@ CREATE TABLE public."Disease" (
 );
 
 
-ALTER TABLE public."Disease" OWNER TO postgres;
+-- ALTER TABLE public."Disease" OWNER TO postgres;
 
 --
 -- Name: DiseaseParam; Type: TABLE; Schema: public; Owner: postgres
@@ -138,7 +138,7 @@ CREATE TABLE public."DiseaseParam" (
 );
 
 
-ALTER TABLE public."DiseaseParam" OWNER TO postgres;
+-- ALTER TABLE public."DiseaseParam" OWNER TO postgres;
 
 --
 -- Name: DiseaseParamData; Type: TABLE; Schema: public; Owner: postgres
@@ -158,7 +158,7 @@ CREATE TABLE public."DiseaseParamData" (
 );
 
 
-ALTER TABLE public."DiseaseParamData" OWNER TO postgres;
+-- ALTER TABLE public."DiseaseParamData" OWNER TO postgres;
 
 --
 -- Name: DiseaseParamData_diseaseParamDataPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -215,7 +215,7 @@ CREATE TABLE public."Doctor" (
 );
 
 
-ALTER TABLE public."Doctor" OWNER TO postgres;
+-- ALTER TABLE public."Doctor" OWNER TO postgres;
 
 --
 -- Name: Doctor_doctorPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -243,7 +243,7 @@ CREATE TABLE public."Hospital" (
 );
 
 
-ALTER TABLE public."Hospital" OWNER TO postgres;
+-- ALTER TABLE public."Hospital" OWNER TO postgres;
 
 --
 -- Name: Hospital_hospitalPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -277,7 +277,7 @@ CREATE TABLE public."InOutPatient" (
 );
 
 
-ALTER TABLE public."InOutPatient" OWNER TO postgres;
+-- ALTER TABLE public."InOutPatient" OWNER TO postgres;
 
 --
 -- Name: InOutPatient_inOutPatientPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -306,7 +306,7 @@ CREATE TABLE public."Lab" (
 );
 
 
-ALTER TABLE public."Lab" OWNER TO postgres;
+-- ALTER TABLE public."Lab" OWNER TO postgres;
 
 --
 -- Name: Lab_labPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -336,7 +336,7 @@ CREATE TABLE public."Location" (
 );
 
 
-ALTER TABLE public."Location" OWNER TO postgres;
+-- ALTER TABLE public."Location" OWNER TO postgres;
 
 --
 -- Name: Location_locationPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -363,7 +363,7 @@ CREATE TABLE public."Medicine" (
 );
 
 
-ALTER TABLE public."Medicine" OWNER TO postgres;
+-- ALTER TABLE public."Medicine" OWNER TO postgres;
 
 --
 -- Name: Medicine_medicinePK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -397,7 +397,7 @@ CREATE TABLE public."Patient" (
 );
 
 
-ALTER TABLE public."Patient" OWNER TO postgres;
+-- ALTER TABLE public."Patient" OWNER TO postgres;
 
 --
 -- Name: PatientDiseaseParamData; Type: TABLE; Schema: public; Owner: postgres
@@ -416,7 +416,7 @@ CREATE TABLE public."PatientDiseaseParamData" (
 );
 
 
-ALTER TABLE public."PatientDiseaseParamData" OWNER TO postgres;
+-- ALTER TABLE public."PatientDiseaseParamData" OWNER TO postgres;
 
 --
 -- Name: PatientDiseaseParamData_patientDiseaseParamDataPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -443,7 +443,7 @@ CREATE TABLE public."Patient_languages" (
 );
 
 
-ALTER TABLE public."Patient_languages" OWNER TO postgres;
+-- ALTER TABLE public."Patient_languages" OWNER TO postgres;
 
 --
 -- Name: Patient_languages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -473,7 +473,7 @@ CREATE TABLE public."PrescribedMedicine" (
 );
 
 
-ALTER TABLE public."PrescribedMedicine" OWNER TO postgres;
+-- ALTER TABLE public."PrescribedMedicine" OWNER TO postgres;
 
 --
 -- Name: PrescribedMedicine_prescribedMedicinePK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -501,7 +501,7 @@ CREATE TABLE public."PrescribedTest" (
 );
 
 
-ALTER TABLE public."PrescribedTest" OWNER TO postgres;
+-- ALTER TABLE public."PrescribedTest" OWNER TO postgres;
 
 --
 -- Name: PrescribedTest_prescribedTestPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -530,7 +530,7 @@ CREATE TABLE public."Prescription" (
 );
 
 
-ALTER TABLE public."Prescription" OWNER TO postgres;
+-- ALTER TABLE public."Prescription" OWNER TO postgres;
 
 --
 -- Name: Prescription_prescriptionPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -562,7 +562,7 @@ CREATE TABLE public."ReferenceRange" (
 );
 
 
-ALTER TABLE public."ReferenceRange" OWNER TO postgres;
+-- ALTER TABLE public."ReferenceRange" OWNER TO postgres;
 
 --
 -- Name: ReferenceRange_referenceRangePK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -592,7 +592,7 @@ CREATE TABLE public."Report" (
 );
 
 
-ALTER TABLE public."Report" OWNER TO postgres;
+-- ALTER TABLE public."Report" OWNER TO postgres;
 
 --
 -- Name: ReportParamData; Type: TABLE; Schema: public; Owner: postgres
@@ -612,7 +612,7 @@ CREATE TABLE public."ReportParamData" (
 );
 
 
-ALTER TABLE public."ReportParamData" OWNER TO postgres;
+-- ALTER TABLE public."ReportParamData" OWNER TO postgres;
 
 --
 -- Name: ReportParamData_reportParamFK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -656,7 +656,7 @@ CREATE TABLE public."Residence" (
 );
 
 
-ALTER TABLE public."Residence" OWNER TO postgres;
+-- ALTER TABLE public."Residence" OWNER TO postgres;
 
 --
 -- Name: Residence_residencePK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -684,7 +684,7 @@ CREATE TABLE public."Test" (
 );
 
 
-ALTER TABLE public."Test" OWNER TO postgres;
+-- ALTER TABLE public."Test" OWNER TO postgres;
 
 --
 -- Name: TestParam; Type: TABLE; Schema: public; Owner: postgres
@@ -699,7 +699,7 @@ CREATE TABLE public."TestParam" (
 );
 
 
-ALTER TABLE public."TestParam" OWNER TO postgres;
+-- ALTER TABLE public."TestParam" OWNER TO postgres;
 
 --
 -- Name: TestParam_testParamPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -743,7 +743,7 @@ CREATE TABLE public."Treatment" (
 );
 
 
-ALTER TABLE public."Treatment" OWNER TO postgres;
+-- ALTER TABLE public."Treatment" OWNER TO postgres;
 
 --
 -- Name: Treatment_treatmentPK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -769,7 +769,7 @@ CREATE TABLE public.auth_group (
 );
 
 
-ALTER TABLE public.auth_group OWNER TO postgres;
+-- ALTER TABLE public.auth_group OWNER TO postgres;
 
 --
 -- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -796,7 +796,7 @@ CREATE TABLE public.auth_group_permissions (
 );
 
 
-ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+-- ALTER TABLE public.auth_group_permissions OWNER TO postgres;
 
 --
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -824,7 +824,7 @@ CREATE TABLE public.auth_permission (
 );
 
 
-ALTER TABLE public.auth_permission OWNER TO postgres;
+-- ALTER TABLE public.auth_permission OWNER TO postgres;
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -859,7 +859,7 @@ CREATE TABLE public.auth_user (
 );
 
 
-ALTER TABLE public.auth_user OWNER TO postgres;
+-- ALTER TABLE public.auth_user OWNER TO postgres;
 
 --
 -- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres
@@ -872,7 +872,7 @@ CREATE TABLE public.auth_user_groups (
 );
 
 
-ALTER TABLE public.auth_user_groups OWNER TO postgres;
+-- ALTER TABLE public.auth_user_groups OWNER TO postgres;
 
 --
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -913,7 +913,7 @@ CREATE TABLE public.auth_user_user_permissions (
 );
 
 
-ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
+-- ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
 
 --
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -940,7 +940,7 @@ CREATE TABLE public.authtoken_token (
 );
 
 
-ALTER TABLE public.authtoken_token OWNER TO postgres;
+-- ALTER TABLE public.authtoken_token OWNER TO postgres;
 
 --
 -- Name: batch_job_execution; Type: TABLE; Schema: public; Owner: postgres
@@ -961,7 +961,7 @@ CREATE TABLE public.batch_job_execution (
 );
 
 
-ALTER TABLE public.batch_job_execution OWNER TO postgres;
+-- ALTER TABLE public.batch_job_execution OWNER TO postgres;
 
 --
 -- Name: batch_job_execution_context; Type: TABLE; Schema: public; Owner: postgres
@@ -974,7 +974,7 @@ CREATE TABLE public.batch_job_execution_context (
 );
 
 
-ALTER TABLE public.batch_job_execution_context OWNER TO postgres;
+-- ALTER TABLE public.batch_job_execution_context OWNER TO postgres;
 
 --
 -- Name: batch_job_execution_params; Type: TABLE; Schema: public; Owner: postgres
@@ -992,7 +992,7 @@ CREATE TABLE public.batch_job_execution_params (
 );
 
 
-ALTER TABLE public.batch_job_execution_params OWNER TO postgres;
+-- ALTER TABLE public.batch_job_execution_params OWNER TO postgres;
 
 --
 -- Name: batch_job_execution_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1006,7 +1006,7 @@ CREATE SEQUENCE public.batch_job_execution_seq
     CACHE 1;
 
 
-ALTER TABLE public.batch_job_execution_seq OWNER TO postgres;
+-- ALTER TABLE public.batch_job_execution_seq OWNER TO postgres;
 
 --
 -- Name: batch_job_instance; Type: TABLE; Schema: public; Owner: postgres
@@ -1020,7 +1020,7 @@ CREATE TABLE public.batch_job_instance (
 );
 
 
-ALTER TABLE public.batch_job_instance OWNER TO postgres;
+-- ALTER TABLE public.batch_job_instance OWNER TO postgres;
 
 --
 -- Name: batch_job_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1034,7 +1034,7 @@ CREATE SEQUENCE public.batch_job_seq
     CACHE 1;
 
 
-ALTER TABLE public.batch_job_seq OWNER TO postgres;
+-- ALTER TABLE public.batch_job_seq OWNER TO postgres;
 
 --
 -- Name: batch_step_execution; Type: TABLE; Schema: public; Owner: postgres
@@ -1062,7 +1062,7 @@ CREATE TABLE public.batch_step_execution (
 );
 
 
-ALTER TABLE public.batch_step_execution OWNER TO postgres;
+-- ALTER TABLE public.batch_step_execution OWNER TO postgres;
 
 --
 -- Name: batch_step_execution_context; Type: TABLE; Schema: public; Owner: postgres
@@ -1075,7 +1075,7 @@ CREATE TABLE public.batch_step_execution_context (
 );
 
 
-ALTER TABLE public.batch_step_execution_context OWNER TO postgres;
+-- ALTER TABLE public.batch_step_execution_context OWNER TO postgres;
 
 --
 -- Name: batch_step_execution_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1089,7 +1089,7 @@ CREATE SEQUENCE public.batch_step_execution_seq
     CACHE 1;
 
 
-ALTER TABLE public.batch_step_execution_seq OWNER TO postgres;
+-- ALTER TABLE public.batch_step_execution_seq OWNER TO postgres;
 
 --
 -- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres
@@ -1108,7 +1108,7 @@ CREATE TABLE public.django_admin_log (
 );
 
 
-ALTER TABLE public.django_admin_log OWNER TO postgres;
+-- ALTER TABLE public.django_admin_log OWNER TO postgres;
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1135,7 +1135,7 @@ CREATE TABLE public.django_content_type (
 );
 
 
-ALTER TABLE public.django_content_type OWNER TO postgres;
+-- ALTER TABLE public.django_content_type OWNER TO postgres;
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1163,7 +1163,7 @@ CREATE TABLE public.django_migrations (
 );
 
 
-ALTER TABLE public.django_migrations OWNER TO postgres;
+-- ALTER TABLE public.django_migrations OWNER TO postgres;
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1190,7 +1190,7 @@ CREATE TABLE public.django_session (
 );
 
 
-ALTER TABLE public.django_session OWNER TO postgres;
+-- ALTER TABLE public.django_session OWNER TO postgres;
 
 --
 -- Name: patients_language; Type: TABLE; Schema: public; Owner: postgres
@@ -1201,7 +1201,7 @@ CREATE TABLE public.patients_language (
 );
 
 
-ALTER TABLE public.patients_language OWNER TO postgres;
+-- ALTER TABLE public.patients_language OWNER TO postgres;
 
 --
 -- Name: tests_reportimage; Type: TABLE; Schema: public; Owner: postgres
@@ -1215,7 +1215,7 @@ CREATE TABLE public.tests_reportimage (
 );
 
 
-ALTER TABLE public.tests_reportimage OWNER TO postgres;
+-- ALTER TABLE public.tests_reportimage OWNER TO postgres;
 
 --
 -- Name: tests_reportimage_reportImagePK_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1242,7 +1242,7 @@ CREATE TABLE public.tests_uploadedexcel (
 );
 
 
-ALTER TABLE public.tests_uploadedexcel OWNER TO postgres;
+-- ALTER TABLE public.tests_uploadedexcel OWNER TO postgres;
 
 --
 -- Name: tests_uploadedexcel_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres

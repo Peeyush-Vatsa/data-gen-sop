@@ -3,14 +3,21 @@ package com.sp.Table;
 import java.util.*;
 public class DBTable {
     private String name;
-    private HashMap<String, TableAttribute> attributes;
+    private String schema;
+    private LinkedHashMap<String, TableAttribute> attributes;
 
     public DBTable(String name, String query) {
         this.name = name;
-        this.attributes = new HashMap<String, TableAttribute>();
+        this.attributes = new LinkedHashMap<String, TableAttribute>();
         parseAttributes(query);
     }
 
+    public String getSchema() {
+        return schema;
+    }
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
     private void parseAttributes(String attributes) {
         String[] attributeList = attributes.split(",");
         for(String attribute : attributeList){
@@ -47,7 +54,6 @@ public class DBTable {
                 foreignKeyColumn = foreignKeyColumn.substring(0, foreignKeyColumn.length() - 1);
             }
             foreignKeyColumn = foreignKeyColumn.substring(0, foreignKeyColumn.length() - 1);
-            System.out.println(foreignKeyColumn);
             String foreignKeyTable = constraintParts[6].split("\\(")[0].trim();
             if (foreignKeyTable.contains(".")){
                 foreignKeyTable = foreignKeyTable.split("\\.")[1];

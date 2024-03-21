@@ -44,6 +44,10 @@ public class TableAttribute{
         return foreignKeyColumn;
     }
 
+    public int getCharLength() {
+        return charLength;
+    }
+
     private void parseAttribute(String attribute) {
         attribute = attribute.trim();
         String attribute1 = attribute.toLowerCase();
@@ -58,7 +62,6 @@ public class TableAttribute{
             attributeParts[0] = attributeParts[0].substring(1, attributeParts[0].length() - 1);
         }
         this.name = attributeParts[0];
-        System.out.println(attributeParts[0]);
         String typeStr = attributeParts[1].toLowerCase();
         if (typeStr.equalsIgnoreCase("character")){
             if (!attribute1.contains("varying")) {
@@ -136,7 +139,7 @@ public class TableAttribute{
         else if (type.equals("date")){
             return DataType.DATE;
         }
-        else if (type.equals("character")){
+        else if (type.contains("character")){
             return DataType.CHARACTER;
         }
         else if (type.equals("timestamp with time zone")){
@@ -161,6 +164,7 @@ public class TableAttribute{
             return DataType.JSONB;
         }
         else {
+            System.out.println("Unknown data type: " + type);
             return DataType.UNKNOWN;
         }
 
