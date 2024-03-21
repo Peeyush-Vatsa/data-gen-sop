@@ -139,7 +139,7 @@ public class TableAttribute{
         else if (type.equals("date")){
             return DataType.DATE;
         }
-        else if (type.equals("character")){
+        else if (type.contains("character")){
             return DataType.CHARACTER;
         }
         else if (type.equals("timestamp with time zone")){
@@ -164,6 +164,7 @@ public class TableAttribute{
             return DataType.JSONB;
         }
         else {
+            System.out.println("Unknown data type: " + type);
             return DataType.UNKNOWN;
         }
 

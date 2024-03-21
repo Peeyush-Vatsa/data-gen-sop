@@ -3,11 +3,11 @@ package com.sp.Table;
 import java.util.*;
 public class DBTable {
     private String name;
-    private HashMap<String, TableAttribute> attributes;
+    private LinkedHashMap<String, TableAttribute> attributes;
 
     public DBTable(String name, String query) {
         this.name = name;
-        this.attributes = new HashMap<String, TableAttribute>();
+        this.attributes = new LinkedHashMap<String, TableAttribute>();
         parseAttributes(query);
     }
 
