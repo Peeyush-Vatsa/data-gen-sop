@@ -16,4 +16,12 @@ public class ForeignKeyValues {
         this.type = type;
         this.values = new ArrayList<String>();
     }
+
+    public void addValue(String value) {
+        this.values.add(value);
+    }
+
+    public String getValue(int i) {
+        return this.values.get(i);
+    }
 }
