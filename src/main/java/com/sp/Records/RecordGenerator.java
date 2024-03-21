@@ -14,17 +14,23 @@ public class RecordGenerator {
     private HashMap<String, HashSet<String>> tableDependencies; // Set of tables that are dependent on a table
     private HashMap<String, ForeignKeyValues> foreignKeyValues; // Set of foreign key values
     private Faker faker;
+    private int noOfRecords;
     public RecordGenerator(HashMap<String, DBTable> tables, int noOfRecords) {
         this.sqlQueries = new HashMap<String,String>();
         this.foreignKeyDependencies = new HashSet<String>();
         this.tableDependencies = new HashMap<String, HashSet<String>>();
         this.foreignKeyValues = new HashMap<String, ForeignKeyValues>();
         this.faker = new Faker();
+        this.noOfRecords = noOfRecords;
         for (String table: tables.keySet()) {
             this.tableDependencies.put(table, new HashSet<String>());
         }
         generateForeignKeyDependencies(tables);
         generateInsertQueries(tables, noOfRecords);
+    }
+
+    public HashMap<String, String> getSqlQueries() {
+        return sqlQueries;
     }
 
     private void generateInsertQueries(HashMap<String, DBTable> tables, int noOfRecords) {
@@ -46,6 +52,7 @@ public class RecordGenerator {
     }
 
     private void generateInsertQuery(HashMap<String, DBTable> tables, String table, int noOfRecords) {
+        System.out.println("Generating insert query for table: " + table);
         DBTable dbTable = tables.get(table);
         HashMap<String, TableAttribute> attributes = dbTable.getAttributes();
         // Checks for all available data
@@ -64,41 +71,93 @@ public class RecordGenerator {
             query += attributeName + ", ";
         }
         query = query.substring(0, query.length() - 2) + ") VALUES ";
+        HashMap<String, HashSet<String>> uniqueEntries = new HashMap<String, HashSet<String>>();
+        for (String attribute: attributes.keySet()) {
+            if (attributes.get(attribute).isUnique() || attributes.get(attribute).isPrimaryKey()) {
+                uniqueEntries.put(attribute, new HashSet<String>());
+            }
+        }
         for (int i = 0; i < noOfRecords; i++) {
             query += "(";
             for (String attributeName: attributes.keySet()) {
                 TableAttribute attribute = attributes.get(attributeName);
                 if (attribute.isForeignKey()) {
-                    ForeignKeyValues foreignKey = this.foreignKeyValues.get(table + "." + attributeName);
-                    query += foreignKey.getValue(i) + ", ";
+                    String foreignKey = attribute.getForeignKeyTable() + "." + attribute.getForeignKeyColumn();
+                    ForeignKeyValues foreignKeyValues;
+                    if (this.foreignKeyDependencies.contains(foreignKey)) {
+                        foreignKeyValues = this.foreignKeyValues.get(foreignKey);
+                    }
+                    else {
+                        foreignKey = attribute.getForeignKeyTable() + ".\"" + attribute.getForeignKeyColumn() + "\"";
+                        if (this.foreignKeyDependencies.contains(foreignKey)) {
+                            foreignKeyValues = this.foreignKeyValues.get(foreignKey);
+                        }
+                        else {
+                            throw new RuntimeException("Foreign key dependency not found");
+                        }
+                    }
+                    query += foreignKeyValues.getValue(i) + ", ";
                 } else {
-                    query += generateValue(attribute) + ", ";
+                    String value = generateValue(attribute);
+                    if (uniqueEntries.containsKey(attributeName)) {
+                        while (uniqueEntries.get(attributeName).contains(value)) {
+                            value = generateValue(attribute);
+                        }
+                        uniqueEntries.get(attributeName).add(value);
+                    }
+                    if (this.foreignKeyDependencies.contains(table + "." + attributeName)) {
+                        ForeignKeyValues foreignKey = this.foreignKeyValues.get(table + "." + attributeName);
+                        foreignKey.addValue(value);
+                    }
+                    query += value + ", ";
                 }
             }
             query = query.substring(0, query.length() - 2) + "), ";
         }
         query = query.substring(0, query.length() - 2) + ";";
+        System.out.println("Table: " + table + " Query: " + query);
         this.sqlQueries.put(table, query);
+        System.out.println("Foreign key values: ");
+        for (String key: this.foreignKeyValues.keySet()) {
+            System.out.println(key + ": " + this.foreignKeyValues.get(key).getValue(0));
+        }
     }
 
     private String generateValue(TableAttribute attribute) {
         // Update to check for primary key/unique compliance
-        // Add null rate at 10% for fields allowing null values
-        // Check field name for name, state, district, city, pin, phone, email, dob/age/birthday,gender,etc
         String value = "";
         if (attribute.getType() == DataType.SMALLINT){
-
+            value = Integer.toString(faker.number().numberBetween(0, 100));
         }
         else if (attribute.getType() == DataType.INTEGER) {
-            value = Integer.toString(faker.number().numberBetween(0, 1000));
+            if (attribute.isPrimaryKey() || attribute.isUnique())
+                value = Long.toString(faker.number().numberBetween(0, this.noOfRecords * 10));
+            else if (attribute.getName().toLowerCase().contains("phone") || attribute.getName().toLowerCase().contains("mobile"))
+                value = "\"" + faker.phoneNumber().cellPhone() + "\"";
+            else if (attribute.getName().toLowerCase().contains("pin"))
+                value = "\"" + faker.address().zipCode() + "\"";
+            else if (attribute.getName().toLowerCase().contains("age"))
+                value = Integer.toString(faker.number().numberBetween(0, 100));
+            else
+                value = Integer.toString(faker.number().numberBetween(0, 1000));
         } else if (attribute.getType() == DataType.BIGINT) {
-
+            value = Long.toString(faker.number().numberBetween(0, 1000000));
         } else if (attribute.getType() == DataType.CHARACTER_VARYING) {
-            value = "\"" + faker.lorem().word() + "\"";
+            if (attribute.getName().toLowerCase().contains("name"))
+                value = "\"" + faker.name().fullName() + "\"";
+            else if (attribute.getName().toLowerCase().contains("state"))
+                value = "\"" + faker.address().state() + "\"";
+            else if (attribute.getName().toLowerCase().contains("district"))
+                value = "\"" + faker.address().city() + "\"";
+            else if (attribute.getName().toLowerCase().contains("city"))
+                value = "\"" + faker.address().city() + "\"";
+            else if (attribute.getName().toLowerCase().contains("email"))
+                value = "\"" + faker.internet().emailAddress() + "\"";
+            value = "\"" + faker.lorem().characters(0, attribute.getCharLength(), true) + "\"";
         } else if (attribute.getType() == DataType.CHARACTER) {
-            value = "\"" + faker.lorem().characters(1, true) + "\"";
+            value = "\"" + faker.lorem().characters(attribute.getCharLength(), true) + "\"";
         } else if (attribute.getType() == DataType.TEXT) {
-
+            value = "\"" + faker.lorem().characters(0, 1000, true) + "\"";
         } else if (attribute.getType() == DataType.BOOLEAN) {
             value = Boolean.toString(faker.bool().bool());
         } else if (attribute.getType() == DataType.DATE) {
@@ -106,13 +165,13 @@ public class RecordGenerator {
         } else if (attribute.getType() == DataType.TIMESTAMP_WITHOUT_TIMEZONE) {
             value = "\"" + faker.date().birthday().toString() + "\"";
         } else if (attribute.getType() == DataType.TIMESTAMP_WITH_TIMEZONE) {
-
+            value = "\"" + faker.date().birthday().toString() + "\"";
         } else if (attribute.getType() == DataType.DOUBLE_PRECISION) {
-
+            value = Double.toString(faker.number().randomDouble(2, 0, 1000));
         } else if (attribute.getType() == DataType.UUID) {
-
+            value = "\"" + faker.idNumber().valid() + "\"";
         } else if (attribute.getType() == DataType.JSONB) {
-
+            value = "\"" + "{foo: " + faker.lorem().characters(0,100)+ "}" + "\"";
         }
         return value;
     }

@@ -44,6 +44,10 @@ public class TableAttribute{
         return foreignKeyColumn;
     }
 
+    public int getCharLength() {
+        return charLength;
+    }
+
     private void parseAttribute(String attribute) {
         attribute = attribute.trim();
         String attribute1 = attribute.toLowerCase();

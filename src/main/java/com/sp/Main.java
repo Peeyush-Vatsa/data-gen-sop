@@ -61,7 +61,11 @@ public class Main {
             return;
         }
         RecordGenerator recordGenerator = new RecordGenerator(tables, noOfRecords);
-
+        HashMap<String, String> sqlQueries = recordGenerator.getSqlQueries();
+        for (String table: sqlQueries.keySet()) {
+            System.out.print(table + ": ");
+            System.out.println(sqlQueries.get(table));
+        }
 
     }
 }
