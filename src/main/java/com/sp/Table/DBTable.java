@@ -47,7 +47,6 @@ public class DBTable {
                 foreignKeyColumn = foreignKeyColumn.substring(0, foreignKeyColumn.length() - 1);
             }
             foreignKeyColumn = foreignKeyColumn.substring(0, foreignKeyColumn.length() - 1);
-            System.out.println(foreignKeyColumn);
             String foreignKeyTable = constraintParts[6].split("\\(")[0].trim();
             if (foreignKeyTable.contains(".")){
                 foreignKeyTable = foreignKeyTable.split("\\.")[1];

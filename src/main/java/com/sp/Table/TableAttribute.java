@@ -58,7 +58,6 @@ public class TableAttribute{
             attributeParts[0] = attributeParts[0].substring(1, attributeParts[0].length() - 1);
         }
         this.name = attributeParts[0];
-        System.out.println(attributeParts[0]);
         String typeStr = attributeParts[1].toLowerCase();
         if (typeStr.equalsIgnoreCase("character")){
             if (!attribute1.contains("varying")) {

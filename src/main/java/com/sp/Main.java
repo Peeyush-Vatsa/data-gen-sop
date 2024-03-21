@@ -1,5 +1,6 @@
 package com.sp;
 
+import com.sp.Records.RecordGenerator;
 import com.sp.Table.AttributeCheckConstraint;
 import com.sp.Table.DBTable;
 import com.sp.Table.TableAttribute;
@@ -22,7 +23,7 @@ public class Main {
         int noOfRecords = Integer.parseInt(args[2]);
 
         // Opening the database connection
-
+        HashMap<String, DBTable> tables;
         // Reading the schema file
         try {
             FileReader sourceSchemaReader = new FileReader(sourceSchema);
@@ -45,7 +46,7 @@ public class Main {
             }
             sourceSchemaBufferedReader.close();
             sourceSchemaReader.close();
-            HashMap<String, DBTable> tables = tableParser.getTables();
+            tables = tableParser.getTables();
         }
         catch (FileNotFoundException e) {
             System.out.println("Schema file not found");
@@ -55,6 +56,12 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        if (tables == null) {
+            System.out.println("No tables found in the schema file");
+            return;
+        }
+        RecordGenerator recordGenerator = new RecordGenerator(tables, noOfRecords);
+
 
     }
 }
