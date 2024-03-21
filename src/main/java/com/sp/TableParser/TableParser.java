@@ -21,7 +21,9 @@ public class TableParser {
             // Gets table name
             String[] queryParts = query.split(" ");
             String tableName = queryParts[2];
+            String schema = "";
             if (tableName.contains(".")){
+                schema = tableName.split("\\.")[0];
                 tableName = tableName.split("\\.")[1];
             }
             if (tableName.startsWith("\"")){
@@ -33,6 +35,10 @@ public class TableParser {
             // Gets attributes
             String attributes = query.substring(query.indexOf("(") + 1, query.lastIndexOf(")"));
             DBTable newTable = new DBTable(tableName, attributes);
+            if (!schema.isEmpty())
+                newTable.setSchema(schema);
+            else
+                newTable.setSchema("public");
             this.tables.put(tableName, newTable);
             return;
         }

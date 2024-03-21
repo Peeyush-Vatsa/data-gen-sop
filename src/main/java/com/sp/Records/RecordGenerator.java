@@ -58,7 +58,7 @@ public class RecordGenerator {
 //                this.generatedRecords.add(attribute.getForeignKeyTable());
             }
         }
-        String query = "INSERT INTO public.\"" + table + "\" (";
+        String query = "INSERT INTO " + dbTable.getSchema() + ".\"" + table + "\" (";
         for (String attributeName: attributes.keySet()) {
             if (this.foreignKeyDependencies.contains(table + "." + attributeName)) {
                 this.foreignKeyValues.put(table + "." + attributeName, new ForeignKeyValues(table, attributeName, attributes.get(attributeName).getType()));

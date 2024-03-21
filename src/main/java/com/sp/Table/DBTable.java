@@ -3,6 +3,7 @@ package com.sp.Table;
 import java.util.*;
 public class DBTable {
     private String name;
+    private String schema;
     private LinkedHashMap<String, TableAttribute> attributes;
 
     public DBTable(String name, String query) {
@@ -11,6 +12,12 @@ public class DBTable {
         parseAttributes(query);
     }
 
+    public String getSchema() {
+        return schema;
+    }
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
     private void parseAttributes(String attributes) {
         String[] attributeList = attributes.split(",");
         for(String attribute : attributeList){

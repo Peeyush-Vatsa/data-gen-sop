@@ -26,23 +26,25 @@ public class Main {
         // Opening the database connection
         DriverManager.registerDriver(new org.postgresql.Driver());
         BufferedReader dbCredentialsReader = new BufferedReader(new FileReader(databaseCredentialFile));
-        String url = dbCredentialsReader.readLine().split("=")[1];
-        String user;
-        try {
-            user = dbCredentialsReader.readLine().split("=")[1];
-        }
-        catch (ArrayIndexOutOfBoundsException E) {
-            user = "";
-        }
-        String password;
-        try {
-            password = dbCredentialsReader.readLine().split("=")[1];
-        }
-        catch (ArrayIndexOutOfBoundsException E){
-            password = "";
+        String url = "";
+        String user = "";
+        String password = "";
+        String line;
+        while ((line = dbCredentialsReader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty())
+                continue;
+            String[] parts = line.split("=");
+            if (parts[0].equalsIgnoreCase("jdbcUrl"))
+                url = parts[1];
+            else if (parts[0].equalsIgnoreCase("user"))
+                user = parts[1];
+            else if (parts[0].equalsIgnoreCase("password"))
+                password = parts[1];
         }
         dbCredentialsReader.close();
         Connection connection;
+        System.out.println(url);
         if (user.isEmpty() || password.isEmpty())
             connection = DriverManager.getConnection(url);
         else
@@ -56,7 +58,6 @@ public class Main {
             Statement statement = connection.createStatement();
             String query = "";
             TableParser tableParser = new TableParser();
-            String line;
             while ((line = sourceSchemaBufferedReader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty() || line.startsWith("--"))
@@ -101,7 +102,6 @@ public class Main {
             }
             catch (PSQLException e) {
                 pending.add(sqlQueries.get(table));
-                System.out.println(e.getMessage());
             }
         }
         while (!pending.isEmpty()){
@@ -115,7 +115,6 @@ public class Main {
                 }
                 catch (PSQLException e) {
 //                    System.out.println("Failed to execute: " + query);
-                    System.out.println(e.getMessage());
                 }
             }
         }
