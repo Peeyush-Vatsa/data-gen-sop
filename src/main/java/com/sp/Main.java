@@ -3,14 +3,11 @@ package com.sp;
 import com.sp.Records.RecordGenerator;
 import com.sp.Table.DBTable;
 import com.sp.TableParser.TableParser;
-import org.postgresql.util.PSQLException;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws SQLException, IOException {
         if (args.length != 3) {
@@ -99,7 +96,7 @@ public class Main {
                 statement.execute(sqlQueries.get(table));
                 System.out.println("Records inserted into " + table);
             }
-            catch (PSQLException e) {
+            catch (org.postgresql.util.PSQLException e) {
                 pending.add(sqlQueries.get(table));
             }
         }
@@ -112,7 +109,7 @@ public class Main {
                     pending.remove(i);
                     System.out.println("Records inserted for " + query.split(" ")[2]);
                 }
-                catch (PSQLException e) {
+                catch (org.postgresql.util.PSQLException e) {
 //                    System.out.println("Failed to execute: " + query);
                 }
             }
