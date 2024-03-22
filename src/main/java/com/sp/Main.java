@@ -2,7 +2,6 @@ package com.sp;
 
 import com.sp.Records.RecordGenerator;
 import com.sp.Table.DBTable;
-import com.sp.Table.TableAttribute;
 import com.sp.TableParser.TableParser;
 import org.postgresql.util.PSQLException;
 
